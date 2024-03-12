@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.app')
 @section('title', 'Banner Settings')
 @push('style')
     <link rel="stylesheet" href="{{ asset('backend/library/datatables/media/css/jquery.dataTables.min.css') }}">
@@ -43,7 +43,7 @@
                                         <thead>
                                             <tr>
                                                 <th>SL</th>
-                                                <th>Hero Image</th>
+                                                <th>Hero Images</th>
                                                 <th></th>
                                                 <th>Action</th>
                                             </tr>

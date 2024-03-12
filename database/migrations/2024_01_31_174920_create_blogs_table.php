@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('sub_title')->nullable();
             $table->text('description')->nullable();
             $table->string('thumbnail');
-            $table->string('date');
+            $table->date('blog_date');
             $table->timestamps();
         });
     }

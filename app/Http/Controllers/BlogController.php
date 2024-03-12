@@ -10,7 +10,7 @@ class BlogController extends Controller
 {
     public function dashboard()
     {
-        return view('backend.blog.dashboard');
+        return view('backend.dashboard');
     }
 
     public function index()
@@ -30,14 +30,14 @@ class BlogController extends Controller
             'title' => 'required|string',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-            'date' => 'required|string',
+            'blog_date' => 'required|string',
         ]);
 
         $blog = new Blog();
         $blog->title = $request->title;
         $blog->sub_title = $request->sub_title;
         $blog->description = $request->description;
-        $blog->date = $request->date;
+        $blog->blog_date = $request->blog_date;
         if ($request->hasFile('thumbnail')) {
             $thumbnailFile = $request->file('thumbnail');
             $thumbnailPath = time() . '_' . $thumbnailFile->getClientOriginalName();
@@ -78,14 +78,14 @@ class BlogController extends Controller
             'title' => 'required|string',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-            'date' => 'required|string',
+            'blog_date' => 'required|string',
         ]);
 
         $blog = Blog::find($id);
         $blog->title = $request->title;
         $blog->sub_title = $request->sub_title;
         $blog->description = $request->description;
-        $blog->date = $request->date;
+        $blog->blog_date = $request->blog_date;
 
         if ($request->hasFile('thumbnail')) {
             if ($blog->thumbnail) {

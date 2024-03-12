@@ -11,7 +11,7 @@ class SettingsController extends Controller
     public function basic()
     {
         $basic = Basic::first();
-        return view('fontend.settings.basic', ['basics' => $basic]);
+        return view('backend.settings.basic', ['basics' => $basic]);
     }
     public function store(Request $request)
     {
@@ -48,7 +48,7 @@ class SettingsController extends Controller
             }
             $imageFile = $request->file('image');
             $imageName = time() . '_' . $imageFile->getClientOriginalName();
-            $imageFile->move(public_path('fontend/logos'), $imageName);
+            $imageFile->move(public_path('backend/logos'), $imageName);
             $basic->image = 'logos/' . $imageName;
         }
         if ($basic->save()) {
@@ -59,7 +59,7 @@ class SettingsController extends Controller
     public function banner()
     {
         $heroimages = HeroImage::all();
-        return view('fontend.settings.banner', ['heroimages' => $heroimages]);
+        return view('backend.settings.banner', ['heroimages' => $heroimages]);
     }
     public function heroImageStore(Request $request)
     {
@@ -71,7 +71,7 @@ class SettingsController extends Controller
         if ($request->hasFile('image')) {
             $imageFile = $request->file('image');
             $imageName = time() . '_' . $imageFile->getClientOriginalName();
-            $imageFile->move(public_path('fontend/heroImages'), $imageName);
+            $imageFile->move(public_path('backend/heroImages'), $imageName);
             $heroimages->image = 'heroImages/' . $imageName;
         }
         if ($heroimages->save()) {

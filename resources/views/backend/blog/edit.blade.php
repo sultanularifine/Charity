@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.app')
 
 @section('title', 'Edit Blog')
 
@@ -50,7 +50,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label><b>Image</b></label>
+                                            <label><b>Images</b></label>
                                             <div>
                                                 <div class="custom-file ">
                                                     <input type="file" class="custom-file-input" id="imageFile" name="image[]" multiple >
@@ -61,7 +61,7 @@
                                         <div class="form-group col-md-4">
                                             <div class="form-group">
                                                 <label><b>Date*</b></label>
-                                                <input type="text" name="date"
+                                                <input type="text" name="blog_date"
                                                     class="form-control datepicker" value="{{ !empty($blogs) ? $blogs->date : '' }}">
                                             </div>
                                         </div>

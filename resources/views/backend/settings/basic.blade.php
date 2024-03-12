@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.app')
 @section('title', 'basic')
 @push('style')
     <!-- CSS Libraries -->

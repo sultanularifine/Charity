@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.app')
 
 @section('title', 'Carousel')
 
@@ -24,7 +24,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="text-right">
-                                <h6>{{ date('d F, Y', strtotime($blogs->date)) }}</h6>
+                                <h6>{{ date('d F, Y', strtotime($blogs->blog_date)) }}</h6>
                             </div>
                             <div class="">
                                 <h3>
