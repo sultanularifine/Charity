@@ -18,7 +18,7 @@
                 @csrf
                 <div class="card-body card card-primary">
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label><b>Hero Image*</b></label>
                             <div>
                                 <div class="custom-file ">
@@ -26,6 +26,15 @@
                                     <label class="custom-file-label" for="imageFiles">Choose file</label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label><b>Title</b></label>
+                            <input type="text" class="form-control"  name="title">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label><b>Sub Title</b></label>
+                            <input type="text" class="form-control" name="sub_title">
                         </div>
                     </div>
                     <div class="card-left text-left my-1">
@@ -44,7 +53,8 @@
                                             <tr>
                                                 <th>SL</th>
                                                 <th>Hero Images</th>
-                                                <th></th>
+                                                <th>Title</th>
+                                                <th>Sub Title</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -54,13 +64,14 @@
                                                     <td> {{ $index + 1 }} </td>
                                                     <td>
                                                         @if ($heroimage->image)
-                                                            <img src="{{ asset('fontend/' . $heroimage->image) }}" width="120px"
+                                                            <img src="{{ asset('backend/' . $heroimage->image) }}" width="120px"
                                                                 height="40px">
                                                         @else
                                                             <img src="" height="50px" width="70px">
                                                         @endif
                                                     </td>
-                                                    <td> </td>
+                                                    <td> {{ $heroimage->title }}</td>
+                                                    <td> {{ $heroimage->sub_title }}</td>
                                                     <td>
                                                         <form action="{{ route('settings.destroy', $heroimage->id) }}"
                                                             method="Post">

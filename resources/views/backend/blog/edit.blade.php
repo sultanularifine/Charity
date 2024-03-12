@@ -66,7 +66,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="form-group mb-0">
                                         <label><b>Description</b></label>
                                         <textarea class="form-control summernote" data-height="150" name="description">{{ !empty($blogs) ? $blogs->description : '' }}</textarea>

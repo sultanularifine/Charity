@@ -4,7 +4,6 @@
 
 @push('style')
     <!-- CSS Libraries -->
-
     <link rel="stylesheet" href="{{ asset('library/chocolat/dist/css/chocolat.css') }}">
 @endpush
 
@@ -62,16 +61,14 @@
                             </div>
                             <div class="gallery gallery-fw" data-item-height="150">
                                 @foreach ($blogs->blogImage as $blogimage)
-                                    <div class="gallery-item gallery-md" data-image="{{ asset('backend/' . $blogimage->image) }}"
-                                        data-title="Image"></div>
+                                    <div class="gallery-item gallery-md"
+                                        data-image="{{ asset('backend/' . $blogimage->image) }}" data-title="Image"></div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </section>
     </div>
 @endsection

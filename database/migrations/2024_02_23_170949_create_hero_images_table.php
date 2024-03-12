@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('hero_images', function (Blueprint $table) {
             $table->id();
             $table->string('image');
+            $table->string('title')->nullable();
+            $table->string('sub_title')->nullable();
             $table->timestamps();
         });
     }

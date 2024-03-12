@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HeroImage;
 use App\Models\Basic;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
@@ -61,13 +62,18 @@ class SettingsController extends Controller
         $heroimages = HeroImage::all();
         return view('backend.settings.banner', ['heroimages' => $heroimages]);
     }
+
     public function heroImageStore(Request $request)
     {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'title' => 'nullable',
+            'sub_title' => 'nullable',
         ]);
 
         $heroimages = new HeroImage();
+        $heroimages->title = $request->title;
+        $heroimages->sub_title = $request->sub_title;
         if ($request->hasFile('image')) {
             $imageFile = $request->file('image');
             $imageName = time() . '_' . $imageFile->getClientOriginalName();
@@ -78,11 +84,46 @@ class SettingsController extends Controller
             return redirect()->route('settings.banner');
         }
     }
+
     public function heroImageDestroy($id)
     {
         $heroimages = HeroImage::find($id);
         if ($heroimages->delete()) {
             return redirect()->route('settings.banner');
+        }
+    }
+
+    public function ccontactStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'phone' => 'required|string',
+            'message' => 'required|string',
+        ]);
+
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->message = $request->message;
+      
+        if ($contact->save()) {
+            // return redirect()->route('settings.basic');
+        }
+    }
+
+    public function contacts()
+    {
+        $contacts = Contact::all();
+        return view('backend.settings.contacts', ['contacts' => $contacts]);
+    }
+
+    public function contactDestroy($id)
+    {
+        $contacts = Contact::find($id);
+        if ($contacts->delete()) {
+            return redirect()->route('settings.contacts');
         }
     }
 }

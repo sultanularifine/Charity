@@ -39,7 +39,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           
                                             @foreach ($blogs as $index => $blog)
                                                 <tr>
                                                     <td> {{ $index + 1 }} </td>
@@ -55,10 +54,7 @@
                                                     <td> {{ $blog->title }} </td>
                                                     <td> {{ $blog->sub_title }} </td>
                                                     <td>
-                                                        {!! implode(' ', array_slice(explode(' ', $blog->description), 0, 30)) !!}@if (str_word_count($blog->description) > 20)
-                                                            ...
-                                                        @endif
-                                                    </td>
+                                                        {!! implode(' ', array_slice(explode(' ', $blog->description), 0, 17)) !!}  ...</td>
                                                     <td class="d-flex">
                                                         <a href="{{ route('blog.show', $blog->id) }}"
                                                             class="btn btn-info btn-action btn-sm mr-1"

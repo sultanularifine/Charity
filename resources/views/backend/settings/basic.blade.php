@@ -46,11 +46,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-1 mt-4">
-                                        @if ($basics->image)
-                                        <img src="{{ asset( 'fontend/' . $basics->image) }}" alt="" width="100px"
+                                        @if ($basics && $basics->image)
+                                        <img src="{{ asset( 'backend/' . $basics->image) }}" alt="" width="90px"
                                             height="35px" class="row">
                                     @else
-                                        <span></span>
+                                        <span>logo</span>
                                     @endif
                                     </div>
                                 </div>
