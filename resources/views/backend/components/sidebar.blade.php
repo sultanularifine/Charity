@@ -33,7 +33,7 @@
                         <a class="nav-link" href="{{ route('settings.banner') }}">Banner Settings</a>
                     </li>
                     <li class="{{ Request::routeIs('contact/message') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('settings.contacts') }}">Contact Message</a>
+                        <a class="nav-link" href="{{ route('settings.contactShow') }}">Contact Message</a>
                     </li>
                 </ul>
             </li>

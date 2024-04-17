@@ -93,7 +93,7 @@ class SettingsController extends Controller
         }
     }
 
-    public function ccontactStore(Request $request)
+    public function contactStore(Request $request)
     {
         $request->validate([
             'name' => 'required|string',
@@ -109,11 +109,11 @@ class SettingsController extends Controller
         $contact->message = $request->message;
       
         if ($contact->save()) {
-            // return redirect()->route('settings.basic');
+            // return redirect()->route('settings.contactShow');
         }
     }
 
-    public function contacts()
+    public function contactShow()
     {
         $contacts = Contact::all();
         return view('backend.settings.contacts', ['contacts' => $contacts]);
