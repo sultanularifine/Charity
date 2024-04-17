@@ -18,7 +18,7 @@
                 @csrf
                 <div class="card-body card card-primary">
                     <div class="row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label><b>Hero Image*</b></label>
                             <div>
                                 <div class="custom-file ">
@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label><b>Title</b></label>
                             <input type="text" class="form-control"  name="title">
                         </div>
@@ -35,6 +35,14 @@
                         <div class="form-group col-md-4">
                             <label><b>Sub Title</b></label>
                             <input type="text" class="form-control" name="sub_title">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label><b>Button Text</b></label>
+                            <input type="text" class="form-control" name="button_text">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label><b>Button Link</b></label>
+                            <input type="text" class="form-control" name="button_link">
                         </div>
                     </div>
                     <div class="card-left text-left my-1">

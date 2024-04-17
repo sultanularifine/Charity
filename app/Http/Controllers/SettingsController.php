@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HeroImage;
+use App\Models\Banner;
 use App\Models\Basic;
 use App\Models\Contact;
 use Illuminate\Http\Request;
@@ -59,8 +59,8 @@ class SettingsController extends Controller
 
     public function banner()
     {
-        $heroimages = HeroImage::all();
-        return view('backend.settings.banner', ['heroimages' => $heroimages]);
+        $banner = Banner::all();
+        return view('backend.settings.banner', ['heroimages' => $banner]);
     }
 
     public function heroImageStore(Request $request)
@@ -69,26 +69,30 @@ class SettingsController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif',
             'title' => 'nullable',
             'sub_title' => 'nullable',
+            'button_text' => 'nullable',
+            'button_link' => 'nullable',
         ]);
 
-        $heroimages = new HeroImage();
-        $heroimages->title = $request->title;
-        $heroimages->sub_title = $request->sub_title;
+        $banner = new Banner();
+        $banner->title = $request->title;
+        $banner->sub_title = $request->sub_title;
+        $banner->button_text = $request->button_text;
+        $banner->button_link = $request->button_link;
         if ($request->hasFile('image')) {
             $imageFile = $request->file('image');
             $imageName = time() . '_' . $imageFile->getClientOriginalName();
             $imageFile->move(public_path('backend/heroImages'), $imageName);
-            $heroimages->image = 'heroImages/' . $imageName;
+            $banner->image = 'heroImages/' . $imageName;
         }
-        if ($heroimages->save()) {
+        if ($banner->save()) {
             return redirect()->route('settings.banner');
         }
     }
 
     public function heroImageDestroy($id)
     {
-        $heroimages = HeroImage::find($id);
-        if ($heroimages->delete()) {
+        $banner = Banner::find($id);
+        if ($banner->delete()) {
             return redirect()->route('settings.banner');
         }
     }
@@ -107,9 +111,9 @@ class SettingsController extends Controller
         $contact->email = $request->email;
         $contact->phone = $request->phone;
         $contact->message = $request->message;
-      
+
         if ($contact->save()) {
-            // return redirect()->route('settings.contactShow');
+            return redirect()->route('fontend.index');
         }
     }
 

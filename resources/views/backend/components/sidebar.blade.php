@@ -23,7 +23,7 @@
             </li>
             <li class="nav-item dropdown {{ Request::routeIs('settings.*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fa-solid fa-setting"></i> <span>Settings</span>
+                    <i class="fa-solid fa-gear"></i> <span>Settings</span>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::routeIs('settings.basic') ? 'active' : '' }}">

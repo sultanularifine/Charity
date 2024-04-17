@@ -35,6 +35,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/banner', [SettingsController::class, 'banner'])->name('settings.banner');
         Route::post('/banner', [SettingsController::class, 'heroImageStore'])->name('settings.imageStore');
         Route::delete('/banner/{id}', [SettingsController::class, 'heroImageDestroy'])->name('settings.destroy');
+        Route::post('/contact/store', [SettingsController::class, 'contactStore'])->name('settings.contactStore');
         Route::get('/contact/show', [SettingsController::class, 'contactShow'])->name('settings.contactShow');
         Route::delete('/contacts/{id}', [SettingsController::class, 'contactDestroy'])->name('settings.contactDestroy');
     });

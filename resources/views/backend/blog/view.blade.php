@@ -33,7 +33,7 @@
                             <div class="carousel-inner mt-4">
                                 <div class="carousel-item active">
                                     @if ($blogs->thumbnail)
-                                        <img src="{{ asset('backend/' . $blogs->thumbnail) }}" w-100>
+                                        <img src="{{ asset('backend/' . $blogs->thumbnail) }}" width="650px">
                                     @else
                                         <img src="https://assets-global.website-files.com/636ebb4d131625f3efdea089/64b5a7eecc3f96b2ac19d62b_shutterstock_1840661509.jpg"
                                             height="50px" width="70px">
