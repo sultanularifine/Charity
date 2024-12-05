@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function dashboard()
-    {
-        return view('backend.dashboard');
-    }
-
     public function index()
     {
         $blogs = Blog::all();

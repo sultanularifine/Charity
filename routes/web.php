@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/admin/dashboard');
 Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', [BlogController::class, 'dashboard'])->name('dashboard');
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/', [TodoController::class, 'index'])->name('dashboard');
+        Route::post('/', [TodoController::class, 'store'])->name('todo.store');
+        Route::get('//{id}', [TodoController::class, 'edit'])->name('todo.edit');
+        Route::put('//{id}', [TodoController::class, 'update'])->name('todo.update');
+        Route::delete('//{id}', [TodoController::class, 'destroy'])->name('todo.destroy');
+    });
+   
     //Blog Controller
     Route::prefix('blog')->group(function () {
         Route::get('/list', [BlogController::class, 'index'])->name('blog.list');
@@ -39,4 +47,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/contact/show', [SettingsController::class, 'contactShow'])->name('settings.contactShow');
         Route::delete('/contacts/{id}', [SettingsController::class, 'contactDestroy'])->name('settings.contactDestroy');
     });
+    // Todo Routes
+
+   
 });

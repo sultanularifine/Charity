@@ -11,10 +11,7 @@
 
 @section('main')
     <div class="main-content">
-        <section class="section">
-            <div class="section-header">
-                <h1>Dashboard</h1>
-            </div>
+        <section class="vh-100 ">
 
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -39,25 +36,29 @@
                                     <div class="card border-0 shadow-sm"
                                         style="background-color: rgba(255, 255, 255, 0.1); border-radius: 15px;">
                                         <div class="card-body">
-                                            <form action="{{ route('todo.store') }}" method="POST">
+                                            <form action="{{ route('todo.update', $data->id) }}" method="POST">
                                                 @csrf
+                                                @method('PUT')
                                                 <div class="row g-1">
                                                     <div class="col-md-4">
                                                         <input type="text" name="name"
                                                             class="form-control form-control-lg bg-light text-dark"
+                                                            value="{{ !empty($data) ? $data->name : '' }}"
                                                             placeholder="Task name..." />
                                                     </div>
                                                     <div class="col-md-3">
                                                         <input type="time" name="time"
-                                                            class="form-control form-control-lg bg-light text-dark" />
+                                                            class="form-control form-control-lg bg-light text-dark"
+                                                            value="{{ !empty($data) ? $data->time : '' }}" />
                                                     </div>
                                                     <div class="col-md-3">
                                                         <input type="date" name="date"
-                                                            class="form-control form-control-lg bg-light text-dark" />
+                                                            class="form-control form-control-lg bg-light text-dark"
+                                                            value="{{ !empty($data) ? $data->date : '' }}" />
                                                     </div>
                                                     <div class="col-md-2 d-grid">
-                                                        <button type="submit" class="btn btn-success btn-lg">Add
-                                                            Task</button>
+                                                        <button type="submit"
+                                                            class="btn btn-success btn-lg">Update</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -74,58 +75,7 @@
 
                                 <hr class="my-4 text-light">
 
-                                <!-- Task List Header -->
-                                <div class="d-flex justify-content-between align-items-center px-3 py-2 rounded shadow-sm"
-                                    style="background-color: rgba(255, 255, 255, 0.3);">
-                                    <p class="small mb-0 fs-5 text-light w-50">Tasks</p>
-                                    <div class="d-flex justify-content-between w-50">
-                                        <p class="small mb-0 fs-5 text-light">Time</p>
-                                        <p class="small mb-0 fs-5 text-light">Due Date</p>
-                                        <p class="small mb-0 fs-5 text-light text-end">Actions</p>
-                                    </div>
-                                </div>
 
-                                <!-- Task List -->
-                                <div class="rows mt-3">
-                                    @foreach ($data as $index => $dt)
-                                        <div class="task-item d-flex justify-content-between align-items-center mb-3 p-3 rounded shadow-sm"
-                                            style="background-color: rgba(255, 255, 255, 0.2);">
-                                            <div class="d-flex align-items-center" style="gap: 1rem;">
-                                                <!-- Gap for number and name -->
-                                                <span class="badge bg-light text-dark">{{ $index + 1 }}</span>
-                                                <p class="lead fw-normal mb-0 text-light">{{ $dt->name }}</p>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between gap-3 w-50">
-                                                <span class="badge bg-info text-dark p-2">
-                                                    {{ \Carbon\Carbon::parse($dt->time)->format('h:i A') }}
-                                                    <!-- Time in 12-hour format -->
-                                                </span>
-                                                <span class="badge bg-warning text-dark p-2">
-                                                    {{ \Carbon\Carbon::parse($dt->date)->format('j F Y') }}
-                                                    <!-- Date in "1 January 2000" format -->
-                                                </span>
-
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <!-- Edit Button with Icon Only -->
-                                                    <a href="{{ route('todo.edit', $dt->id) }}"
-                                                        class="btn btn-sm btn-primary">
-                                                        <i class="fas fa-edit"></i> <!-- Edit Icon -->
-                                                    </a>
-
-                                                    <!-- Delete Button with Icon Only -->
-                                                    <form action="{{ route('todo.destroy', $dt->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> <!-- Trash Icon for Delete -->
-                                                        </button>
-                                                    </form>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
 
 
                             </div>
@@ -133,10 +83,27 @@
                     </div>
                 </div>
             </div>
-
-
-        </section>
     </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+        integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('#all').change(function(e) {
+            if (e.currentTarget.checked) {
+                $('.rows').find('input[type="checkbox"]').prop('checked', true);
+            } else {
+                $('.rows').find('input[type="checkbox"]').prop('checked', false);
+            }
+        });
+    </script>
+    </body>
+
+    </html>
 @endsection
 
 @push('scripts')
